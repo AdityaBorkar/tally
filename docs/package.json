@@ -1,0 +1,50 @@
+{
+  "name": "tally-import-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "startHTTPS": "node server.js",
+    "startProd": "NODE_ENV=production node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@headlessui/react": "^1.7.7",
+    "@tanstack/react-table": "^8.7.6",
+    "@tensorflow/tfjs": "^4.2.0",
+    "csv-parse": "^5.3.3",
+    "encoding": "^0.1.13",
+    "framer-motion": "^8.5.0",
+    "https-localhost": "^4.7.1",
+    "ifsc": "^2.0.11",
+    "net": "^1.0.2",
+    "next": "^13.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-virtual": "^2.10.4",
+    "react-window": "^1.8.8",
+    "recoil": "^0.7.6",
+    "request": "^2.88.2",
+    "sentence-case": "^3.0.4",
+    "xml-js": "^1.6.11",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "@types/react-window": "^1.8.5",
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.32.0",
+    "eslint-config-next": "^13.1.5",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "typescript": "4.9.4"
+  }
+}

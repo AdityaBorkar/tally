@@ -1,0 +1,51 @@
+import { Platform, PermissionsAndroid } from "react-native";
+import SmsListener from "react-native-android-sms-listener";
+
+const App = () => {
+  const [smsText, setSmsText] = useState("");
+  const [error, setError] = useState("");
+  useEffect(() => {
+    // Request permission to read SMS on Android
+    if (Platform.OS === "android") {
+      PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.READ_SMS, {
+        title: "Read SMS Permission",
+        message: "App needs access to read SMS messages",
+      }).then((granted) => {
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          const smsListener = new SmsListener((text) => {
+            setSmsText(text);
+            sendSmsTextToServer(text);
+          });
+          smsListener.start();
+          return () => smsListener.stop();
+        } else {
+          setError("SMS read permission denied");
+        }
+      });
+    }
+  }, []);
+
+  const sendSmsTextToServer = async (text) => {
+    try {
+      const response = await fetch("https://example.com/sms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: text }),
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  return (
+    <View>
+      {error ? <Text>{error}</Text> : null}
+      <Text>{smsText}</Text>
+    </View>
+  );
+};
